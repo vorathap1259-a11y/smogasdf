@@ -1,30 +1,32 @@
 import { motion } from 'motion/react';
+import { useLanguage } from '../LanguageContext';
 
 export function CaseStudies() {
+  const { t } = useLanguage();
   const cases = [
     {
       client: 'Tres Amigos',
-      category: 'Restaurant',
-      results: '100K+ Views',
-      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop',
+      category: t('case.category.restaurant'),
+      results: `100K+ ${t('case.results.views')}`,
+      image: 'https://drive.google.com/thumbnail?id=1Zu-Imy4g177GU9PYjfVUFL4dX2JXK5CL&sz=w1000',
     },
     {
       client: 'Beymen BBQ',
-      category: 'Restaurant',
-      results: '500K+ Views',
-      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1000&auto=format&fit=crop',
+      category: t('case.category.restaurant'),
+      results: `500K+ ${t('case.results.views')}`,
+      image: 'https://drive.google.com/thumbnail?id=1H24kImzQ1QojqdmupBpRog7T4fwgvtri&sz=w1000',
     },
     {
       client: 'Bit Hotel',
-      category: 'Tech / Gaming',
-      results: '300K+ Users',
-      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1000&auto=format&fit=crop',
+      category: t('case.category.tech'),
+      results: `300K+ ${t('case.results.users')}`,
+      image: 'https://drive.google.com/thumbnail?id=1c_jvMa7lsmpY4crUDAw87qhNFWjv4of6&sz=w1000',
     },
     {
       client: 'Flex Beach',
-      category: 'Hospitality',
+      category: t('case.category.hospitality'),
       results: '0 to 100',
-      image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=80&w=1000&auto=format&fit=crop',
+      image: 'https://drive.google.com/thumbnail?id=1mMQix6x4jj6mJoBSSswcfT0AJMvbqg-H&sz=w1000',
     },
   ];
 
@@ -38,8 +40,8 @@ export function CaseStudies() {
             viewport={{ once: true }}
             className="text-5xl md:text-8xl font-display font-bold tracking-tighter uppercase leading-[0.9]"
           >
-            Proven <br/>
-            <span className="font-serif italic text-purple-500 font-normal normal-case">Results.</span>
+            {t('case.headline.proven')} <br/>
+            <span className="font-serif italic text-purple-500 font-normal normal-case">{t('case.headline.results')}</span>
           </motion.h2>
           <motion.a
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +50,7 @@ export function CaseStudies() {
             href="#contact"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors uppercase tracking-widest text-sm"
           >
-            Start Yours
+            {t('case.cta')}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H3.5M11 1V8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -70,6 +72,7 @@ export function CaseStudies() {
                 <img 
                   src={item.image} 
                   alt={item.client} 
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute top-6 right-6 z-20 px-4 py-2 rounded-full glass-panel text-white font-medium text-sm backdrop-blur-md">

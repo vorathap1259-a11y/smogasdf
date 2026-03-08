@@ -6,7 +6,21 @@ export function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden bg-transparent">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden bg-black">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover scale-110 blur-[2px]"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-social-media-interface-4468-large.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+      </div>
+
       <div className="relative z-10 w-full px-6 flex flex-col items-center text-center mt-12">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -21,6 +35,24 @@ export function Hero() {
           <span className="text-xs md:text-sm font-medium tracking-widest uppercase text-gray-300">
             Amsterdam <span className="text-base leading-none mx-1">🇳🇱</span> • Dubai <span className="text-base leading-none mx-1">🇦🇪</span> • Poland <span className="text-base leading-none mx-1">🇵🇱</span> • USA <span className="text-base leading-none mx-1">🇺🇸</span>
           </span>
+        </motion.div>
+
+        {/* Floating View Counter */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="absolute top-1/4 right-[10%] hidden lg:flex flex-col items-center p-4 rounded-2xl glass-panel-strong border-purple-500/30 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+        >
+          <div className="text-xs font-bold text-purple-400 uppercase tracking-tighter mb-1">Live Views</div>
+          <div className="text-3xl font-mono font-bold text-white flex items-center gap-2">
+            <motion.span
+              animate={{ opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-2 h-2 rounded-full bg-red-500"
+            />
+            1,248,392
+          </div>
         </motion.div>
 
         <div className="overflow-hidden mb-6">

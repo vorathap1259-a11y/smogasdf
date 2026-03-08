@@ -1,25 +1,45 @@
 import { motion } from 'motion/react';
+import { useLanguage } from '../LanguageContext';
 
 export function Packages() {
+  const { t } = useLanguage();
   const packages = [
     {
-      name: 'Starter',
+      name: t('packages.starter.name'),
       price: '€1,500',
-      period: '/mo',
-      features: ['4 videos per month', 'Professional Filming', 'High-end Editing', 'Concept Strategy'],
+      period: t('packages.period'),
+      features: [
+        t('packages.feature.videos4'),
+        t('packages.feature.filming'),
+        t('packages.feature.editing'),
+        t('packages.feature.concept')
+      ],
     },
     {
-      name: 'Growth',
+      name: t('packages.growth.name'),
       price: '€2,000',
-      period: '/mo',
-      features: ['6 videos per month', 'Professional Filming', 'High-end Editing', 'Concept Strategy', 'Distribution Optimization'],
+      period: t('packages.period'),
+      features: [
+        t('packages.feature.videos6'),
+        t('packages.feature.filming'),
+        t('packages.feature.editing'),
+        t('packages.feature.concept'),
+        t('packages.feature.distribution')
+      ],
       popular: true,
     },
     {
-      name: 'Authority',
+      name: t('packages.authority.name'),
       price: '€4,500',
-      period: '/mo',
-      features: ['14 videos per month', 'Professional Filming', 'High-end Editing', 'Full Viral Strategy', 'Priority Scheduling', 'Account Manager'],
+      period: t('packages.period'),
+      features: [
+        t('packages.feature.videos14'),
+        t('packages.feature.filming'),
+        t('packages.feature.editing'),
+        t('packages.feature.fullviral'),
+        t('packages.feature.priority'),
+        t('packages.feature.manager')
+      ],
     },
   ];
 
@@ -33,8 +53,8 @@ export function Packages() {
             viewport={{ once: true }}
             className="text-5xl md:text-8xl font-display font-bold tracking-tighter uppercase leading-[0.9] mb-6"
           >
-            Growth <br/>
-            <span className="font-serif italic text-purple-500 font-normal normal-case">Packages.</span>
+            {t('packages.headline.growth')} <br/>
+            <span className="font-serif italic text-purple-500 font-normal normal-case">{t('packages.headline.packages')}</span>
           </motion.h2>
         </div>
 
@@ -54,7 +74,7 @@ export function Packages() {
             >
               {pkg.popular && (
                 <div className="absolute -top-4 left-10 px-4 py-1 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest border border-white/10">
-                  Most Popular
+                  {t('packages.popular')}
                 </div>
               )}
               
@@ -83,7 +103,7 @@ export function Packages() {
                     : 'bg-white/10 text-white hover:bg-white/20'
                 }`}
               >
-                Apply Now
+                {t('packages.cta')}
               </a>
             </motion.div>
           ))}

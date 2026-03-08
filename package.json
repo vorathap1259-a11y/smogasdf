@@ -10,7 +10,7 @@
     "dev": "tsx server.ts",
     "build": "vite build",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf build",
     "lint": "tsc --noEmit",
     "start": "node server.ts"
   },

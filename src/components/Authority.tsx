@@ -6,13 +6,32 @@ export function Authority() {
 
   const stats = [
     { label: t('authority.stats.views'), value: '2B+' },
-    { label: 'Unique Viewers', value: '300M+' },
-    { label: 'IG Followers', value: '500K+' },
-    { label: 'Subscribers', value: 'Millions' },
+    { label: t('authority.stats.unique'), value: '300M+' },
+    { label: t('authority.stats.followers'), value: 'Millions' },
+    { label: t('authority.stats.reach'), value: 'Global' },
   ];
 
   return (
     <section className="py-32 bg-transparent relative overflow-hidden border-t border-white/5">
+      {/* Background Video Grid */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+        <div className="grid grid-cols-4 md:grid-cols-6 gap-4 h-full">
+          {[...Array(24)].map((_, i) => (
+            <div key={i} className="aspect-[9/16] bg-white/10 rounded-lg overflow-hidden">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-social-media-icons-on-a-blue-background-4467-large.mp4" type="video/mp4" />
+              </video>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-5">
@@ -22,9 +41,9 @@ export function Authority() {
               viewport={{ once: true }}
               className="text-5xl md:text-7xl font-display font-bold tracking-tight mb-8 leading-[1.1]"
             >
-              The Numbers <br/>
-              <span className="font-serif italic text-gradient-purple font-normal pr-4">Speak For</span> <br/>
-              Themselves.
+              {t('authority.headline.numbers')} <br/>
+              <span className="font-serif italic text-gradient-purple font-normal pr-4">{t('authority.headline.speak')}</span> <br/>
+              {t('authority.headline.themselves')}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
@@ -33,7 +52,7 @@ export function Authority() {
               transition={{ delay: 0.1 }}
               className="text-xl text-gray-400 leading-relaxed mb-10 font-light"
             >
-              We don't just talk about going viral. We live it every single day. Our strategies are tested on millions before they reach your brand.
+              {t('authority.desc')}
             </motion.p>
             <motion.a
               initial={{ opacity: 0, y: 30 }}
@@ -45,7 +64,7 @@ export function Authority() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full glass-panel-strong hover:bg-white/10 transition-colors text-sm font-medium uppercase tracking-widest group"
             >
-              Verify on Instagram
+              {t('authority.cta')}
               <svg className="group-hover:translate-x-1 transition-transform" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 11L11 1M11 1H3.5M11 1V8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>

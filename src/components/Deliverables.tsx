@@ -1,45 +1,47 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Play, Heart, Eye, MessageCircle, X } from 'lucide-react';
 import { useState } from 'react';
+import { useLanguage } from '../LanguageContext';
 
 export function Deliverables() {
+  const { t } = useLanguage();
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   const videos = [
     {
       id: 1,
-      title: 'English Version',
-      views: '5.2M',
-      likes: '420K',
-      comments: '12K',
-      language: 'English 🇺🇸',
-      driveId: '1IRqQXo_kudyhJ9cFxBTzyKIlu3xkamQy',
+      title: 'Nuclear',
+      views: '1.1M',
+      likes: '132K',
+      comments: '1,200',
+      language: t('deliverables.lang.en'),
+      driveId: '1HcIo1ImtDzkIGTbspgqvXktevt877bXS',
     },
     {
       id: 2,
-      title: 'Dutch Version',
-      views: '2.1M',
-      likes: '180K',
-      comments: '5K',
-      language: 'Dutch 🇳🇱',
-      driveId: '197Xn28wRF8IiuSX_utZuavTDCdBtKWWh',
+      title: 'Barbeque',
+      views: '13.1M',
+      likes: '857.9K',
+      comments: '8,156',
+      language: t('deliverables.lang.nl'),
+      driveId: '1G-8U_M1b-yhu68qefjzSKRe35C9qNhsA',
     },
     {
       id: 3,
-      title: 'Arabic Version',
-      views: '8.4M',
-      likes: '890K',
-      comments: '45K',
-      language: 'Arabic 🇦🇪',
+      title: 'Dubai Lifestyle',
+      views: '1.3M',
+      likes: '76K',
+      comments: '1,000',
+      language: t('deliverables.lang.ar'),
       driveId: '1tCuvWqcP-d3JnQ79ETxprH2LRquETh3E',
     },
     {
       id: 4,
-      title: 'Polish Version',
-      views: '1.5M',
-      likes: '120K',
-      comments: '3K',
-      language: 'Polish 🇵🇱',
+      title: 'European Expansion',
+      views: '14M',
+      likes: '525K',
+      comments: '6,382',
+      language: t('deliverables.lang.pl'),
       driveId: '1EiP0of-FnNuKueagZIEkELLY_kGmTfdw',
     },
   ];
@@ -54,11 +56,11 @@ export function Deliverables() {
             viewport={{ once: true }}
             className="text-5xl md:text-8xl font-display font-bold tracking-tighter uppercase leading-[0.9] mb-6"
           >
-            Viral <br/>
-            <span className="font-serif italic text-purple-500 font-normal normal-case">Deliverables.</span>
+            {t('deliverables.headline.viral')} <br/>
+            <span className="font-serif italic text-purple-500 font-normal normal-case">{t('deliverables.headline.deliverables')}</span>
           </motion.h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
-            We produce high-converting content in multiple languages, tailored for global and local audiences.
+            {t('deliverables.subheadline')}
           </p>
         </div>
 
@@ -102,7 +104,7 @@ export function Deliverables() {
                 </div>
                 <div className="flex items-center gap-2 text-gray-300 text-sm">
                   <MessageCircle className="w-4 h-4" />
-                  <span>{video.comments} comments</span>
+                  <span>{video.comments} {t('deliverables.comments')}</span>
                 </div>
               </div>
 

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
+import { Target, Zap, TrendingUp, Users } from 'lucide-react';
 
 export function Solution() {
   const { t } = useLanguage();
@@ -9,21 +10,25 @@ export function Solution() {
       number: '01',
       title: t('solution.step1.title'),
       description: t('solution.step1.desc'),
+      icon: Target,
     },
     {
       number: '02',
       title: t('solution.step2.title'),
       description: t('solution.step2.desc'),
+      icon: Zap,
     },
     {
       number: '03',
       title: t('solution.step3.title'),
       description: t('solution.step3.desc'),
+      icon: TrendingUp,
     },
     {
       number: '04',
       title: t('solution.step4.title'),
       description: t('solution.step4.desc'),
+      icon: Users,
     },
   ];
 
@@ -52,8 +57,13 @@ export function Solution() {
               transition={{ duration: 0.7, delay: index * 0.1 }}
               className="group flex flex-col md:flex-row md:items-center gap-6 md:gap-16 p-8 md:p-12 rounded-3xl glass-panel-strong hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500"
             >
-              <div className="text-6xl md:text-8xl font-display font-bold text-outline group-hover:text-white transition-colors duration-500 w-32 shrink-0">
-                {step.number}
+              <div className="flex items-center gap-8 md:gap-16">
+                <div className="text-6xl md:text-8xl font-display font-bold text-outline group-hover:text-white transition-colors duration-500 w-32 shrink-0">
+                  {step.number}
+                </div>
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors duration-500 shrink-0">
+                  <step.icon className="w-8 h-8 md:w-12 md:h-12 text-purple-500" />
+                </div>
               </div>
               <div className="flex-1">
                 <h3 className="text-3xl md:text-5xl font-display font-bold mb-4 group-hover:text-purple-400 transition-colors duration-500">

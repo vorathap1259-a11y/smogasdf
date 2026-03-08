@@ -21,6 +21,26 @@ export function Problem() {
               {t('problem.headline.no')} <br/>
               <span className="text-outline">{t('problem.headline.attention')}</span>
             </h2>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="relative aspect-video rounded-3xl overflow-hidden glass-panel-strong mt-12 group"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000" 
+                alt="Empty restaurant" 
+                className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="text-xs font-bold uppercase tracking-[0.3em] text-white/50 mb-2">The Reality</div>
+                <div className="text-xl font-display font-bold text-white">Zero Footfall. Zero Growth.</div>
+              </div>
+            </motion.div>
           </motion.div>
 
           <div className="space-y-12 lg:pt-32">

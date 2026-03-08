@@ -2,8 +2,10 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Loader2 } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 export function Contact() {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -53,22 +55,22 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <h2 className="text-6xl md:text-8xl font-display font-bold tracking-tighter uppercase leading-[0.9] mb-8">
-              Let's <br/>
-              <span className="font-serif italic text-purple-500 font-normal normal-case">Talk.</span>
+              {t('contact.headline.lets')} <br/>
+              <span className="font-serif italic text-purple-500 font-normal normal-case">{t('contact.headline.talk')}</span>
             </h2>
             <p className="text-xl text-gray-400 leading-relaxed mb-12 max-w-md">
-              Ready to dominate your local market? Fill out the form and we'll get back to you within 24 hours.
+              {t('contact.desc')}
             </p>
 
             <div className="space-y-8">
               <div>
-                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">Email Us</h4>
+                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">{t('contact.email')}</h4>
                 <a href="mailto:thewiseturtle123@gmail.com" className="text-2xl md:text-3xl font-display font-bold hover:text-purple-400 transition-colors">
                   thewiseturtle123@gmail.com
                 </a>
               </div>
               <div>
-                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">Follow Us</h4>
+                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">{t('contact.follow')}</h4>
                 <a href="https://instagram.com/omersastimm" target="_blank" rel="noopener noreferrer" className="text-2xl md:text-3xl font-display font-bold hover:text-purple-400 transition-colors">
                   @omersastimm
                 </a>
@@ -86,7 +88,7 @@ export function Contact() {
             <form className="space-y-8" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label htmlFor="name" className="text-xs font-medium text-gray-500 uppercase tracking-widest">Name</label>
+                  <label htmlFor="name" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.name')}</label>
                   <input 
                     type="text" 
                     id="name" 
@@ -97,7 +99,7 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-3">
-                  <label htmlFor="business" className="text-xs font-medium text-gray-500 uppercase tracking-widest">Business Name</label>
+                  <label htmlFor="business" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.business')}</label>
                   <input 
                     type="text" 
                     id="business" 
@@ -110,7 +112,7 @@ export function Contact() {
               </div>
 
               <div className="space-y-3">
-                <label htmlFor="location" className="text-xs font-medium text-gray-500 uppercase tracking-widest">Location</label>
+                <label htmlFor="location" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.location')}</label>
                 <input 
                   type="text" 
                   id="location" 
@@ -122,13 +124,13 @@ export function Contact() {
               </div>
 
               <div className="space-y-3">
-                <label htmlFor="revenue" className="text-xs font-medium text-gray-500 uppercase tracking-widest">Monthly Revenue (Optional)</label>
+                <label htmlFor="revenue" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.revenue')}</label>
                 <select 
                   id="revenue" 
                   name="revenue"
                   className="w-full bg-transparent border-b border-white/20 pb-3 text-white focus:outline-none focus:border-purple-500 transition-colors text-lg appearance-none rounded-none cursor-pointer"
                 >
-                  <option value="" className="bg-zinc-900">Select Range</option>
+                  <option value="" className="bg-zinc-900">{t('contact.form.revenue.select')}</option>
                   <option value="0-10k" className="bg-zinc-900">€0 - €10k</option>
                   <option value="10k-50k" className="bg-zinc-900">€10k - €50k</option>
                   <option value="50k-100k" className="bg-zinc-900">€50k - €100k</option>
@@ -137,14 +139,14 @@ export function Contact() {
               </div>
 
               <div className="space-y-3">
-                <label htmlFor="goal" className="text-xs font-medium text-gray-500 uppercase tracking-widest">What is your main goal?</label>
+                <label htmlFor="goal" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.goal')}</label>
                 <textarea 
                   id="goal" 
                   name="goal"
                   required
                   rows={3}
                   className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder:text-gray-700 focus:outline-none focus:border-purple-500 transition-colors text-lg resize-none rounded-none"
-                  placeholder="Tell us what you want to achieve..."
+                  placeholder="..."
                 />
               </div>
 
@@ -156,11 +158,11 @@ export function Contact() {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Sending...
+                    ...
                   </>
                 ) : (
                   <>
-                    Request Strategy Call
+                    {t('contact.form.cta')}
                     <svg width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
                       <path d="M1 11L11 1M11 1H3.5M11 1V8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>

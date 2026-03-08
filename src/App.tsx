@@ -5,6 +5,7 @@ import { Problem } from './components/Problem';
 import { Solution } from './components/Solution';
 import { CaseStudies } from './components/CaseStudies';
 import { Packages } from './components/Packages';
+import { CustomBudget } from './components/CustomBudget';
 import { Locations } from './components/Locations';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -290,6 +291,7 @@ export default function App() {
           <OmerSastim />
           <CaseStudies />
           <Packages />
+          <CustomBudget />
           <Locations />
           <Contact />
         </main>
