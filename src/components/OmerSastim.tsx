@@ -75,7 +75,7 @@ export function OmerSastim() {
             <motion.div 
               animate={{ x: [-5, 5, -5] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-32 -right-4 md:top-auto md:bottom-12 md:right-12 glass-panel p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl z-20"
+              className="absolute top-4 -left-4 md:top-auto md:bottom-12 md:right-12 glass-panel p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl z-20"
             >
               <div className="flex items-center gap-3 md:gap-4">
                 <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center">

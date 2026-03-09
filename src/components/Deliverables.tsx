@@ -74,7 +74,7 @@ export function Deliverables() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative rounded-3xl overflow-hidden glass-panel aspect-[9/16] border border-white/10 cursor-pointer max-h-[420px] md:max-h-none"
+              className="group relative rounded-3xl overflow-hidden glass-panel border border-white/10 cursor-pointer h-0 pb-[177.78%] max-h-[420px] md:max-h-none"
             >
               <iframe 
                 src={`https://drive.google.com/file/d/${video.driveId}/preview`}
@@ -138,7 +138,7 @@ export function Deliverables() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-[400px] aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl"
+              className="relative w-full max-w-[400px] h-0 pb-[177.78%] rounded-2xl overflow-hidden bg-black shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <iframe
