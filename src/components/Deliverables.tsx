@@ -76,14 +76,14 @@ export function Deliverables() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative rounded-3xl overflow-hidden glass-panel border border-white/10 cursor-pointer h-0 pb-[177.78%] max-h-[420px] md:max-h-none"
             >
-              <iframe 
-                src={`https://drive.google.com/file/d/${video.driveId}/preview`}
-                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-                allow="autoplay"
-                title={video.title}
+              <img 
+                src={`https://drive.google.com/thumbnail?id=${video.driveId}&sz=w1000`}
+                alt={video.title}
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                referrerPolicy="no-referrer"
               />
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               
               <div className="absolute top-4 left-4 pointer-events-none">
                 <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-medium text-white">
@@ -143,7 +143,7 @@ export function Deliverables() {
             >
               <iframe
                 src={`https://drive.google.com/file/d/${activeVideo}/preview`}
-                className="w-full h-full"
+                className="absolute inset-0 w-full h-full"
                 allow="autoplay; fullscreen"
                 allowFullScreen
                 title="Video Player"
