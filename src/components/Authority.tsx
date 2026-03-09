@@ -15,7 +15,7 @@ export function Authority() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const stats = [
-    { label: t('authority.stats.views'), value: '5M+' },
+    { label: t('authority.stats.views'), value: '2B+' },
     { label: t('authority.stats.unique'), value: '300M+' },
     { label: t('authority.stats.followers'), value: 'Millions' },
     { label: t('authority.stats.reach'), value: 'Global' },

@@ -17,7 +17,7 @@ import { motion, useScroll, useTransform } from 'motion/react';
 function GlobalBackground() {
   const { scrollYProgress } = useScroll();
 
-  // Base background color
+  // Base background colors
   const bgColor = useTransform(
     scrollYProgress,
     [0, 0.2, 0.4, 0.6, 0.8, 1],
@@ -284,11 +284,11 @@ export default function App() {
         <Navbar />
         <main className="relative z-10">
           <Hero />
+          <Deliverables />
+          <OmerSastim />
           <Authority />
           <Problem />
           <Solution />
-          <Deliverables />
-          <OmerSastim />
           <CaseStudies />
           <Packages />
           <CustomBudget />
