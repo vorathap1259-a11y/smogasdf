@@ -11,18 +11,18 @@ export function Deliverables() {
     {
       id: 1,
       title: 'Abu Afif Shoarma',
-      views: '13.1M',
-      likes: '857.9K',
-      comments: '8,156',
+      views: '1.1M',
+      likes: '50K',
+      comments: '1,200',
       language: t('deliverables.lang.nl'),
       driveId: '1G-8U_M1b-yhu68qefjzSKRe35C9qNhsA',
     },
     {
       id: 2,
       title: 'Barbeque',
-      views: '1.1M',
-      likes: '50K',
-      comments: '1,200',
+      views: '13.1M',
+      likes: '857.9K',
+      comments: '8,156',
       language: t('deliverables.lang.en'),
       driveId: '1HcIo1ImtDzkIGTbspgqvXktevt877bXS',
     },
@@ -138,12 +138,12 @@ export function Deliverables() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-[400px] h-0 pb-[177.78%] rounded-2xl overflow-hidden bg-black shadow-2xl"
+              className="relative w-full max-w-[400px] max-h-[85vh] aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <iframe
                 src={`https://drive.google.com/file/d/${activeVideo}/preview`}
-                className="absolute inset-0 w-full h-full"
+                className="w-full h-full"
                 allow="autoplay; fullscreen"
                 allowFullScreen
                 title="Video Player"
