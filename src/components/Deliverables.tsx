@@ -10,26 +10,26 @@ export function Deliverables() {
   const videos = [
     {
       id: 1,
-      title: 'Nuclear',
-      views: '5M+',
-      likes: '132K',
-      comments: '1,200',
-      language: t('deliverables.lang.en'),
-      driveId: '1HcIo1ImtDzkIGTbspgqvXktevt877bXS',
-    },
-    {
-      id: 2,
-      title: 'Barbeque',
-      views: '5M+',
+      title: 'Abu Afif Shoarma',
+      views: '13.1M',
       likes: '857.9K',
       comments: '8,156',
       language: t('deliverables.lang.nl'),
       driveId: '1G-8U_M1b-yhu68qefjzSKRe35C9qNhsA',
     },
     {
+      id: 2,
+      title: 'Barbeque',
+      views: '1.1M',
+      likes: '50K',
+      comments: '1,200',
+      language: t('deliverables.lang.en'),
+      driveId: '1HcIo1ImtDzkIGTbspgqvXktevt877bXS',
+    },
+    {
       id: 3,
       title: 'Dubai Lifestyle',
-      views: '5M+',
+      views: '1.3M',
       likes: '76K',
       comments: '1,000',
       language: t('deliverables.lang.ar'),
@@ -38,7 +38,7 @@ export function Deliverables() {
     {
       id: 4,
       title: 'European Expansion',
-      views: '5M+',
+      views: '14.5M',
       likes: '525K',
       comments: '6,382',
       language: t('deliverables.lang.pl'),
@@ -74,7 +74,7 @@ export function Deliverables() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative rounded-3xl overflow-hidden glass-panel aspect-[9/16] border border-white/10 cursor-pointer"
+              className="group relative rounded-3xl overflow-hidden glass-panel aspect-[9/16] border border-white/10 cursor-pointer max-h-[420px] md:max-h-none"
             >
               <iframe 
                 src={`https://drive.google.com/file/d/${video.driveId}/preview`}
