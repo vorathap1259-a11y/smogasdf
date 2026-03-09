@@ -6,8 +6,16 @@ export function Footer() {
     <footer className="bg-transparent pt-20 pb-10 border-t border-white/5 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
-          <div className="text-3xl font-display font-bold tracking-tighter">
-            SMOG<span className="text-purple-500">.</span>
+          <div className="flex items-center gap-3">
+            <img 
+              src="https://lh3.googleusercontent.com/d/1s9d7WlHDnHbIyS8spySqSnfZFc_oAIjb" 
+              alt="SMOG Agency" 
+              className="h-12 w-12 rounded-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+            <span className="text-2xl font-display font-bold tracking-tighter text-white">
+              SMOG<span className="text-purple-500">.</span>
+            </span>
           </div>
           
           <div className="flex gap-8">

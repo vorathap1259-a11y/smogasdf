@@ -11,7 +11,7 @@ export function Deliverables() {
     {
       id: 1,
       title: 'Nuclear',
-      views: '1.1M',
+      views: '5M+',
       likes: '132K',
       comments: '1,200',
       language: t('deliverables.lang.en'),
@@ -20,7 +20,7 @@ export function Deliverables() {
     {
       id: 2,
       title: 'Barbeque',
-      views: '13.1M',
+      views: '5M+',
       likes: '857.9K',
       comments: '8,156',
       language: t('deliverables.lang.nl'),
@@ -29,7 +29,7 @@ export function Deliverables() {
     {
       id: 3,
       title: 'Dubai Lifestyle',
-      views: '1.3M',
+      views: '5M+',
       likes: '76K',
       comments: '1,000',
       language: t('deliverables.lang.ar'),
@@ -38,7 +38,7 @@ export function Deliverables() {
     {
       id: 4,
       title: 'European Expansion',
-      views: '14M',
+      views: '5M+',
       likes: '525K',
       comments: '6,382',
       language: t('deliverables.lang.pl'),

@@ -7,13 +7,13 @@ export function CaseStudies() {
     {
       client: 'Tres Amigos',
       category: t('case.category.restaurant'),
-      results: `100K+ ${t('case.results.views')}`,
+      results: `5M+ ${t('case.results.views')}`,
       image: 'https://drive.google.com/thumbnail?id=1Zu-Imy4g177GU9PYjfVUFL4dX2JXK5CL&sz=w1000',
     },
     {
       client: 'Beymen BBQ',
       category: t('case.category.restaurant'),
-      results: `500K+ ${t('case.results.views')}`,
+      results: `1M+ ${t('case.results.views')} ${t('case.results.for1video')}`,
       image: 'https://drive.google.com/thumbnail?id=1H24kImzQ1QojqdmupBpRog7T4fwgvtri&sz=w1000',
     },
     {

@@ -1,36 +1,46 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
+import { useRef } from 'react';
 
 export function Authority() {
   const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const stats = [
-    { label: t('authority.stats.views'), value: '2B+' },
+    { label: t('authority.stats.views'), value: '5M+' },
     { label: t('authority.stats.unique'), value: '300M+' },
     { label: t('authority.stats.followers'), value: 'Millions' },
     { label: t('authority.stats.reach'), value: 'Global' },
   ];
 
   return (
-    <section className="py-32 bg-transparent relative overflow-hidden border-t border-white/5">
-      {/* Background Video Grid */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
-        <div className="grid grid-cols-4 md:grid-cols-6 gap-4 h-full">
-          {[...Array(24)].map((_, i) => (
-            <div key={i} className="aspect-[9/16] bg-white/10 rounded-lg overflow-hidden">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              >
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-social-media-icons-on-a-blue-background-4467-large.mp4" type="video/mp4" />
-              </video>
-            </div>
-          ))}
-        </div>
-      </div>
+    <section 
+      ref={sectionRef}
+      id="authority"
+      className="py-32 bg-[#08090f] relative overflow-hidden border-t border-white/5"
+    >
+      {/* World Map Background */}
+      <motion.div 
+        style={{ scale, opacity: 0.2 }}
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url('https://lh3.googleusercontent.com/d/1mMxOcNbPv3_rA8mwLZzdU9wPKia4Db8S')`,
+          }}
+        />
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(8,9,15,0.6)_65%,rgba(8,9,15,0.95)_100%)]" />
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -39,10 +49,10 @@ export function Authority() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-7xl font-display font-bold tracking-tight mb-8 leading-[1.1]"
+              className="text-5xl md:text-7xl font-display font-bold tracking-tight mb-8 leading-[1.05]"
             >
               {t('authority.headline.numbers')} <br/>
-              <span className="font-serif italic text-gradient-purple font-normal pr-4">{t('authority.headline.speak')}</span> <br/>
+              <span className="italic text-purple-500">{t('authority.headline.speak')}</span> <br/>
               {t('authority.headline.themselves')}
             </motion.h2>
             <motion.p 
@@ -50,7 +60,7 @@ export function Authority() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-gray-400 leading-relaxed mb-10 font-light"
+              className="text-lg text-white/45 leading-relaxed mb-10 max-w-sm"
             >
               {t('authority.desc')}
             </motion.p>
@@ -62,7 +72,7 @@ export function Authority() {
               href="https://instagram.com/omersastimm"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full glass-panel-strong hover:bg-white/10 transition-colors text-sm font-medium uppercase tracking-widest group"
+              className="inline-flex items-center gap-3 px-8 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 transition-all text-xs font-semibold uppercase tracking-[0.2em] group"
             >
               {t('authority.cta')}
               <svg className="group-hover:translate-x-1 transition-transform" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,21 +81,24 @@ export function Authority() {
             </motion.a>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-2 gap-4 md:gap-8">
+          <div className="lg:col-span-7 grid grid-cols-2 gap-4 md:gap-6">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
-                className="p-8 md:p-10 rounded-3xl glass-panel-strong flex flex-col justify-center relative overflow-hidden group hover:border-purple-500/30 transition-colors duration-500"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`p-8 md:p-10 rounded-2xl backdrop-blur-md border flex flex-col justify-center relative overflow-hidden group transition-all duration-500 ${
+                  index === 3 
+                    ? 'bg-purple-600/15 border-purple-500/30' 
+                    : 'bg-white/5 border-white/10 hover:border-white/20'
+                }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="text-4xl md:text-6xl font-display font-bold text-white mb-4 tracking-tighter relative z-10 group-hover:scale-105 transition-transform duration-500 origin-left">
+                <div className="text-4xl md:text-5xl font-display font-bold text-white mb-2 tracking-tighter relative z-10">
                   {stat.value}
                 </div>
-                <div className="text-sm md:text-base font-medium text-gray-400 uppercase tracking-widest relative z-10">
+                <div className="text-[10px] md:text-xs font-bold text-white/35 uppercase tracking-[0.2em] relative z-10">
                   {stat.label}
                 </div>
               </motion.div>

@@ -6,6 +6,17 @@ export function Problem() {
 
   return (
     <section className="py-32 bg-transparent relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+        <img 
+          src="https://lh3.googleusercontent.com/d/1LbU7WZaEqRHoDrJZ0s6AdNDwoLfJE6Ld" 
+          alt="Background" 
+          className="w-full h-full object-cover grayscale"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-transparent to-[#030303]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <motion.div
@@ -19,7 +30,7 @@ export function Problem() {
               {t('problem.headline.great')} <br/>
               <span className="font-serif italic text-gradient-purple font-normal normal-case pr-4">{t('problem.headline.business')}</span><br/>
               {t('problem.headline.no')} <br/>
-              <span className="text-outline">{t('problem.headline.attention')}</span>
+              <span className="text-outline" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)', color: 'rgba(167, 139, 250, 0.15)' }}>{t('problem.headline.attention')}</span>
             </h2>
             
             <motion.div
@@ -30,7 +41,7 @@ export function Problem() {
               className="relative aspect-video rounded-3xl overflow-hidden glass-panel-strong mt-12 group"
             >
               <img 
-                src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000" 
+                src="https://lh3.googleusercontent.com/d/1LbU7WZaEqRHoDrJZ0s6AdNDwoLfJE6Ld" 
                 alt="Empty restaurant" 
                 className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                 referrerPolicy="no-referrer"
@@ -77,14 +88,14 @@ export function Problem() {
               whileInView={{ opacity: 1, y: 0, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-10 rounded-3xl bg-white text-black shadow-[0_0_40px_rgba(255,255,255,0.1)] group"
+              className="p-10 rounded-3xl bg-white/[0.04] border border-white/[0.07] text-white shadow-[0_0_40px_rgba(0,0,0,0.2)] group"
             >
-              <div className="text-6xl font-serif italic text-gray-300 mb-6 group-hover:text-purple-500 transition-colors duration-500">03</div>
+              <div className="text-6xl font-serif italic text-white/10 mb-6 group-hover:text-purple-500 transition-colors duration-500">03</div>
               <h3 className="text-3xl font-display font-bold mb-4">{t('problem.step3.title')}</h3>
-              <p className="text-xl text-gray-600 leading-relaxed mb-8 font-light">
+              <p className="text-xl text-white/60 leading-relaxed mb-8 font-light">
                 {t('problem.step3.desc')}
               </p>
-              <a href="#contact" className="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-sm border-b-2 border-black pb-1 hover:text-purple-600 hover:border-purple-600 transition-colors">
+              <a href="#contact" className="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-sm border-b-2 border-white pb-1 hover:text-purple-400 hover:border-purple-400 transition-colors">
                 {t('problem.cta')}
                 <svg className="group-hover:translate-x-1 transition-transform" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 11L11 1M11 1H3.5M11 1V8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

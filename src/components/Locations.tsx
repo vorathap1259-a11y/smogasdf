@@ -1,8 +1,19 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
+import { useRef } from 'react';
 
 export function Locations() {
   const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1.1, 1.4]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
   const futureLocations = [
     { name: 'Dubai', flag: '🇦🇪' },
     { name: 'Poland', flag: '🇵🇱' },
@@ -10,7 +21,25 @@ export function Locations() {
   ];
 
   return (
-    <section className="py-32 bg-transparent relative overflow-hidden border-t border-white/5">
+    <section 
+      ref={sectionRef}
+      className="py-32 bg-transparent relative overflow-hidden border-t border-white/5"
+    >
+      {/* World Map Background */}
+      <motion.div 
+        style={{ scale, opacity: 0.2 }}
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url('https://lh3.googleusercontent.com/d/1mMxOcNbPv3_rA8mwLZzdU9wPKia4Db8S')`,
+          }}
+        />
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(3,3,3,0.6)_65%,rgba(3,3,3,0.95)_100%)]" />
+      </motion.div>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

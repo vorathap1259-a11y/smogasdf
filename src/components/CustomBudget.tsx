@@ -1,33 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
-import { Calculator, Sparkles, ArrowRight, DollarSign, Video } from 'lucide-react';
+import { Sparkles, ArrowRight, DollarSign } from 'lucide-react';
 
 export const CustomBudget = () => {
   const { t } = useLanguage();
   const [budget, setBudget] = useState<string>('2300');
-  const [estimatedVideos, setEstimatedVideos] = useState<number>(7);
-
-  useEffect(() => {
-    const amount = parseFloat(budget);
-    if (!isNaN(amount) && amount > 0) {
-      // Base calculation: roughly $300-$350 per video depending on volume
-      // We'll use a sliding scale or a simple average for the demo
-      // $1500 -> 5 videos ($300/ea)
-      // $2500 -> 10 videos ($250/ea)
-      // $4500 -> 20 videos ($225/ea)
-      
-      let perVideoPrice = 350;
-      if (amount >= 4500) perVideoPrice = 225;
-      else if (amount >= 2500) perVideoPrice = 250;
-      else if (amount >= 1500) perVideoPrice = 300;
-      
-      const count = Math.floor(amount / perVideoPrice);
-      setEstimatedVideos(count > 0 ? count : 0);
-    } else {
-      setEstimatedVideos(0);
-    }
-  }, [budget]);
 
   return (
     <section id="custom-budget" className="py-24 relative overflow-hidden">
@@ -77,35 +55,10 @@ export const CustomBudget = () => {
             {/* Result Side */}
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative bg-black/40 border border-white/10 rounded-2xl p-8 text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/20 mb-2">
-                  <Video className="w-8 h-8 text-purple-400" />
-                </div>
-                
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={estimatedVideos}
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    className="space-y-1"
-                  >
-                    <span className="block text-6xl font-display font-bold text-white">
-                      {estimatedVideos}
-                    </span>
-                    <span className="block text-purple-300 font-medium uppercase tracking-widest text-sm">
-                      {estimatedVideos === 1 ? 'High-Quality Video' : 'High-Quality Videos'}
-                    </span>
-                  </motion.div>
-                </AnimatePresence>
-
-                <p className="text-gray-400 text-sm">
-                  Estimated output for your specific budget.
-                </p>
-
+              <div className="relative bg-black/40 border border-white/10 rounded-2xl p-8 text-center flex flex-col justify-center min-h-[200px]">
                 <button 
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full mt-4 py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 group"
+                  className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 group shadow-lg shadow-purple-500/20"
                 >
                   {t('customBudget.cta', 'Get This Offer')}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

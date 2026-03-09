@@ -1,20 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
-
-  const languages = [
-    { code: 'EN', flag: '🇺🇸' },
-    { code: 'NL', flag: '🇳🇱' },
-    { code: 'PL', flag: '🇵🇱' },
-    { code: 'AR', flag: '🇦🇪' },
-  ] as const;
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +18,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: t('nav.services'), href: '#services' },
-    { name: t('nav.work'), href: '#work' },
+    { name: t('nav.work'), href: '#deliverables' },
     { name: t('nav.packages'), href: '#packages' },
   ];
 
@@ -41,10 +33,15 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between relative z-10">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-black font-display font-bold text-xl group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300">
-            S
-          </div>
-          <span className="font-display font-bold text-xl tracking-tighter uppercase">SMOG</span>
+          <img 
+            src="https://lh3.googleusercontent.com/d/1s9d7WlHDnHbIyS8spySqSnfZFc_oAIjb" 
+            alt="SMOG Agency" 
+            className="h-12 w-12 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
+            referrerPolicy="no-referrer"
+          />
+          <span className="text-2xl font-display font-bold tracking-tighter text-white">
+            SMOG<span className="text-purple-500">.</span>
+          </span>
         </a>
 
         {/* Desktop Nav */}
@@ -62,44 +59,6 @@ export function Navbar() {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-8">
-          {/* Language Toggle */}
-          <div className="relative">
-            <button
-              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-              className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-gray-400 hover:text-white transition-colors"
-            >
-              <Globe className="w-4 h-4" />
-              <span className="text-base">{languages.find(l => l.code === language)?.flag}</span>
-              {language}
-            </button>
-            <AnimatePresence>
-              {isLangMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full right-0 mt-4 bg-[#111] border border-white/10 rounded-2xl shadow-2xl overflow-hidden py-2 min-w-[120px] backdrop-blur-xl"
-                >
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code as any);
-                        setIsLangMenuOpen(false);
-                      }}
-                      className={`flex items-center gap-3 w-full text-left px-6 py-3 text-xs font-medium uppercase tracking-widest hover:bg-white/5 transition-colors ${
-                        language === lang.code ? 'text-purple-400' : 'text-gray-400'
-                      }`}
-                    >
-                      <span className="text-base">{lang.flag}</span>
-                      {lang.code}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
           <a
             href="#contact"
             className="px-6 py-3 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-purple-500 hover:text-white transition-all duration-300"
@@ -146,21 +105,6 @@ export function Navbar() {
                 </a>
               ))}
             </nav>
-            
-            <div className="flex items-center gap-6 mb-12">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code as any)}
-                  className={`flex items-center gap-2 text-sm font-medium uppercase tracking-widest ${
-                    language === lang.code ? 'text-purple-400' : 'text-gray-500'
-                  }`}
-                >
-                  <span className="text-lg">{lang.flag}</span>
-                  {lang.code}
-                </button>
-              ))}
-            </div>
             
             <a
               href="#contact"
