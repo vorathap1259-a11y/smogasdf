@@ -78,7 +78,7 @@ export function Deliverables() {
             >
               <iframe 
                 src={`https://drive.google.com/file/d/${video.driveId}/preview`}
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
                 allow="autoplay"
                 title={video.title}
               />
