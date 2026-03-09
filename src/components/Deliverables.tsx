@@ -74,12 +74,12 @@ export function Deliverables() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative rounded-3xl overflow-hidden glass-panel border border-white/10 cursor-pointer h-0 pb-[177.78%] max-h-[420px] md:max-h-none"
+              className="group relative rounded-3xl overflow-hidden glass-panel border border-white/10 cursor-pointer aspect-[9/16] w-full"
             >
               <img 
                 src={`https://drive.google.com/thumbnail?id=${video.driveId}&sz=w1000`}
                 alt={video.title}
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
               
@@ -138,12 +138,12 @@ export function Deliverables() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-[400px] max-h-[85vh] aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl"
+              className="relative h-[80vh] md:h-[85vh] aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <iframe
                 src={`https://drive.google.com/file/d/${activeVideo}/preview`}
-                className="w-full h-full"
+                className="absolute inset-0 w-full h-full border-0"
                 allow="autoplay; fullscreen"
                 allowFullScreen
                 title="Video Player"
