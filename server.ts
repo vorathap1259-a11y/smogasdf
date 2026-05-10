@@ -15,9 +15,9 @@ async function startServer() {
 
   // API routes FIRST
   app.post("/api/contact", async (req, res) => {
-    const { name, business, location, revenue, goal } = req.body;
+    const { name, email, business, location, revenue, goal } = req.body;
 
-    if (!name || !business || !location || !goal) {
+    if (!name || !email || !business || !location || !goal) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -36,33 +36,43 @@ async function startServer() {
 
       const mailOptions = {
         from: process.env.SMTP_USER || '"SMOG Agency" <noreply@smog.agency>',
-        to: "ysipusovi4@gmail.com, thewiseturtle123@gmail.com",
-        subject: `New Strategy Call Request from ${name} (${business})`,
+        to: "thewiseturtle123@gmail.com, ysipusovi4@gmail.com",
+        subject: `🚨 Viral Strategy Call Request: ${name} (${business})`,
         text: `
-          New Strategy Call Request:
+          New Strategy Call Request Received!
           
           Name: ${name}
+          Email: ${email}
           Business: ${business}
           Location: ${location}
           Revenue: ${revenue || "Not provided"}
           Goal: ${goal}
+          
+          ------------------------------------------
+          This request was submitted via the SMOG Agency website.
         `,
         html: `
-          <h2>New Strategy Call Request</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Business:</strong> ${business}</p>
-          <p><strong>Location:</strong> ${location}</p>
-          <p><strong>Revenue:</strong> ${revenue || "Not provided"}</p>
-          <p><strong>Goal:</strong> ${goal}</p>
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; rounded: 10px;">
+            <h2 style="color: #8b5cf6;">New Strategy Call Request</h2>
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Business:</strong> ${business}</p>
+            <p><strong>Location:</strong> ${location}</p>
+            <p><strong>Revenue:</strong> ${revenue || "Not provided"}</p>
+            <p><strong>Goal:</strong> ${goal}</p>
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+            <p style="font-size: 12px; color: #64748b;">This request was submitted via the SMOG Agency website contact form.</p>
+          </div>
         `,
       };
 
       // Only send if credentials are provided, otherwise just log it
       if (process.env.SMTP_USER && process.env.SMTP_PASS) {
         await transporter.sendMail(mailOptions);
-        console.log("Email sent successfully to ysipusovi4@gmail.com & thewiseturtle123@gmail.com");
+        console.log(`Email successfully sent to thewiseturtle123@gmail.com and ysipusovi4@gmail.com`);
       } else {
-        console.log("No SMTP credentials provided. Email would have been sent to ysipusovi4@gmail.com & thewiseturtle123@gmail.com with content:", mailOptions.text);
+        console.log("No SMTP credentials provided. Notification intended for thewiseturtle123@gmail.com and ysipusovi4@gmail.com:", mailOptions.text);
       }
 
       res.status(200).json({ success: true, message: "Request received" });

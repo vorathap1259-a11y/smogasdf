@@ -1,13 +1,32 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Play, Heart, Eye, MessageCircle, X } from 'lucide-react';
-import { useState } from 'react';
+import { Play, Heart, Eye, MessageCircle, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useRef } from 'react';
 import { useLanguage } from '../LanguageContext';
 
 export function Deliverables() {
   const { t } = useLanguage();
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const videos = [
+    {
+      id: 5,
+      title: 'Tres Amigos Viral',
+      views: '5.2M',
+      likes: '312K',
+      comments: '2,450',
+      language: t('deliverables.lang.nl'),
+      driveId: '1Zu-Imy4g177GU9PYjfVUFL4dX2JXK5CL',
+    },
+    {
+      id: 6,
+      title: 'Tote Bag Viral',
+      views: '2.8M',
+      likes: '185K',
+      comments: '1,120',
+      language: t('deliverables.lang.en'),
+      driveId: '1mMQix6x4jj6mJoBSSswcfT0AJMvbqg-H',
+    },
     {
       id: 1,
       title: 'Abu Afif Shoarma',
@@ -46,6 +65,14 @@ export function Deliverables() {
     },
   ];
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="deliverables" className="py-32 bg-transparent relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -64,58 +91,77 @@ export function Deliverables() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {videos.map((video, index) => {
-            return (
-            <motion.div
-              key={video.id}
-              onClick={() => setActiveVideo(video.driveId)}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative rounded-3xl overflow-hidden glass-panel border border-white/10 cursor-pointer aspect-[9/16] w-full"
-            >
-              <img 
-                src={`https://drive.google.com/thumbnail?id=${video.driveId}&sz=w1000`}
-                alt={video.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-              
-              <div className="absolute top-4 left-4 pointer-events-none">
-                <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-medium text-white">
-                  {video.language}
-                </span>
-              </div>
+        <div className="relative group/carousel">
+          <button 
+            onClick={() => scroll('left')}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glass-panel border border-white/10 flex items-center justify-center text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-white/10 hidden md:flex"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button 
+            onClick={() => scroll('right')}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glass-panel border border-white/10 flex items-center justify-center text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-white/10 hidden md:flex"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
 
-              <div className="absolute bottom-0 left-0 w-full p-6 pointer-events-none">
-                <div className="flex items-center justify-between text-white mb-3">
-                  <div className="flex items-center gap-2">
-                    <Eye className="w-5 h-5 text-purple-400" />
-                    <span className="font-bold text-lg">{video.views}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-pink-500 fill-pink-500" />
-                    <span className="font-bold text-lg">{video.likes}</span>
-                  </div>
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 px-4 -mx-4"
+          >
+            {videos.map((video, index) => {
+              return (
+              <motion.div
+                key={video.id}
+                onClick={() => setActiveVideo(video.driveId)}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative rounded-3xl overflow-hidden glass-panel border border-white/10 cursor-pointer aspect-[9/16] w-[280px] md:w-[320px] shrink-0 snap-center"
+              >
+                <img 
+                  src={`https://drive.google.com/thumbnail?id=${video.driveId}&sz=w1000`}
+                  alt={video.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                
+                <div className="absolute top-4 left-4 pointer-events-none">
+                  <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-xs font-medium text-white">
+                    {video.language}
+                  </span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-300 text-sm">
-                  <MessageCircle className="w-4 h-4" />
-                  <span>{video.comments} {t('deliverables.comments')}</span>
-                </div>
-              </div>
 
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                  <Play className="w-6 h-6 text-white fill-white ml-1" />
+                <div className="absolute bottom-0 left-0 w-full p-6 pointer-events-none">
+                  <div className="flex items-center justify-between text-white mb-3">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-5 h-5 text-purple-400" />
+                      <span className="font-bold text-lg">{video.views}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Heart className="w-5 h-5 text-pink-500 fill-pink-500" />
+                      <span className="font-bold text-lg">{video.likes}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-300 text-sm">
+                    <MessageCircle className="w-4 h-4" />
+                    <span>{video.comments} {t('deliverables.comments')}</span>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-            );
-          })}
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                    <Play className="w-6 h-6 text-white fill-white ml-1" />
+                  </div>
+                </div>
+              </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
 

@@ -17,6 +17,7 @@ export function Contact() {
     const formData = new FormData(e.currentTarget);
     const data = {
       name: formData.get('name'),
+      email: formData.get('email'),
       business: formData.get('business'),
       location: formData.get('location'),
       revenue: formData.get('revenue'),
@@ -99,6 +100,20 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-3">
+                  <label htmlFor="email" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.email')}</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    required
+                    className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder:text-gray-700 focus:outline-none focus:border-purple-500 transition-colors text-lg rounded-none"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
                   <label htmlFor="business" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.business')}</label>
                   <input 
                     type="text" 
@@ -109,18 +124,17 @@ export function Contact() {
                     placeholder="Acme Corp"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-3">
-                <label htmlFor="location" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.location')}</label>
-                <input 
-                  type="text" 
-                  id="location" 
-                  name="location"
-                  required
-                  className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder:text-gray-700 focus:outline-none focus:border-purple-500 transition-colors text-lg rounded-none"
-                  placeholder="Amsterdam, NL"
-                />
+                <div className="space-y-3">
+                  <label htmlFor="location" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.location')}</label>
+                  <input 
+                    type="text" 
+                    id="location" 
+                    name="location"
+                    required
+                    className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder:text-gray-700 focus:outline-none focus:border-purple-500 transition-colors text-lg rounded-none"
+                    placeholder="Amsterdam, NL"
+                  />
+                </div>
               </div>
 
               <div className="space-y-3">
