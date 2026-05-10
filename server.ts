@@ -3,6 +3,7 @@ import { createServer as createViteServer } from "vite";
 import nodemailer from "nodemailer";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 
@@ -94,7 +95,11 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    app.use(express.static("dist"));
+    const buildPath = path.join(process.cwd(), 'build');
+    app.use(express.static(buildPath));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(buildPath, 'index.html'));
+    });
   }
 
   app.listen(PORT, "0.0.0.0", () => {
