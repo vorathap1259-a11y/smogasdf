@@ -67,15 +67,19 @@ async function startServer() {
         `,
       };
 
-      // Only send if credentials are provided, otherwise just log it
+      // Only send if credentials are provided, otherwise log it or return error in prod
       if (process.env.SMTP_USER && process.env.SMTP_PASS) {
         await transporter.sendMail(mailOptions);
         console.log(`Email successfully sent to thewiseturtle123@gmail.com and ysipusovi4@gmail.com`);
+        return res.status(200).json({ success: true, message: "Request received and email sent" });
       } else {
-        console.log("No SMTP credentials provided. Notification intended for thewiseturtle123@gmail.com and ysipusovi4@gmail.com:", mailOptions.text);
+        console.warn("No SMTP credentials provided! Email not sent.", mailOptions.text);
+        if (process.env.NODE_ENV === "production" && process.env.RENDER) {
+            // Give an explicit error on Render so they know to configure SMTP
+            return res.status(500).json({ success: false, error: "SMTP environment variables not configured on Render." });
+        }
+        return res.status(200).json({ success: true, message: "Request received (mocked, no credentials)" });
       }
-
-      res.status(200).json({ success: true, message: "Request received" });
     } catch (error) {
       console.error("Error sending email:", error);
       res.status(500).json({ error: "Failed to send request" });

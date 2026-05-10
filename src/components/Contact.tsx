@@ -33,11 +33,20 @@ export function Contact() {
         body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        (e.target as HTMLFormElement).reset();
+      // Render static site SPA rules might return 200 OK with index.html for undefined routes
+      const contentType = response.headers.get("content-type");
+      if (response.ok && contentType && contentType.includes("application/json")) {
+        const result = await response.json();
+        if (result.success) {
+          setSubmitStatus('success');
+          (e.target as HTMLFormElement).reset();
+        } else {
+          setSubmitStatus('error');
+        }
       } else {
+        // Either not OK, or we got HTML back (meaning the backend isn't running)
         setSubmitStatus('error');
+        console.error("Failed to send request. Is the backend running?");
       }
     } catch (error) {
       setSubmitStatus('error');
