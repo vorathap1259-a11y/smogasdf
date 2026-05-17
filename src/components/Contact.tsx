@@ -57,45 +57,22 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-32 bg-transparent relative overflow-hidden border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-6xl md:text-8xl font-display font-bold tracking-tighter uppercase leading-[0.9] mb-8">
-              {t('contact.headline.lets')} <br/>
-              <span className="font-serif italic text-purple-500 font-normal normal-case">{t('contact.headline.talk')}</span>
+      <div className="max-w-3xl mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="p-8 md:p-12 rounded-[2rem] glass-panel"
+        >
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tighter uppercase leading-[0.9] mb-4">
+              Request Strategy Call
             </h2>
-            <p className="text-xl text-gray-400 leading-relaxed mb-12 max-w-md">
+            <p className="text-gray-400">
               {t('contact.desc')}
             </p>
-
-            <div className="space-y-8">
-              <div>
-                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">{t('contact.email')}</h4>
-                <a href="mailto:thewiseturtle123@gmail.com" className="text-2xl md:text-3xl font-display font-bold hover:text-purple-400 transition-colors">
-                  thewiseturtle123@gmail.com
-                </a>
-              </div>
-              <div>
-                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">{t('contact.follow')}</h4>
-                <a href="https://instagram.com/omersastimm" target="_blank" rel="noopener noreferrer" className="text-2xl md:text-3xl font-display font-bold hover:text-purple-400 transition-colors">
-                  @omersastimm
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="p-8 md:p-12 rounded-[2rem] glass-panel"
-          >
-            <form className="space-y-8" onSubmit={handleSubmit}>
+          </div>
+          <form className="space-y-8" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
                   <label htmlFor="name" className="text-xs font-medium text-gray-500 uppercase tracking-widest">{t('contact.form.name')}</label>
@@ -205,7 +182,6 @@ export function Contact() {
               )}
             </form>
           </motion.div>
-        </div>
       </div>
     </section>
   );
