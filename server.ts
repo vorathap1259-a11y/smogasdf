@@ -22,17 +22,23 @@ async function startServer() {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
+    console.log(`Received contact form submission from ${email} - attempting to send email...`);
+
     try {
       // Configure nodemailer transporter
       // For production, you should use real SMTP credentials in .env
+      const port = parseInt(process.env.SMTP_PORT || "587");
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || "smtp.gmail.com",
-        port: parseInt(process.env.SMTP_PORT || "587"),
-        secure: process.env.SMTP_SECURE === "true",
+        port: port,
+        secure: process.env.SMTP_SECURE === "true" || port === 465,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
         },
+        connectionTimeout: 10000, // 10 seconds to fail fast
+        greetingTimeout: 10000,
+        socketTimeout: 10000,
       });
 
       const mailOptions = {

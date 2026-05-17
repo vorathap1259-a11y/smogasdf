@@ -10,24 +10,6 @@ export function Deliverables() {
 
   const videos = [
     {
-      id: 5,
-      title: 'Tres Amigos Viral',
-      views: '5.2M',
-      likes: '312K',
-      comments: '2,450',
-      language: t('deliverables.lang.nl'),
-      driveId: '1Zu-Imy4g177GU9PYjfVUFL4dX2JXK5CL',
-    },
-    {
-      id: 6,
-      title: 'Tote Bag Viral',
-      views: '2.8M',
-      likes: '185K',
-      comments: '1,120',
-      language: t('deliverables.lang.en'),
-      driveId: '1mMQix6x4jj6mJoBSSswcfT0AJMvbqg-H',
-    },
-    {
       id: 1,
       title: 'Abu Afif Shoarma',
       views: '1.1M',

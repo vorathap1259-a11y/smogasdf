@@ -19,7 +19,7 @@ export function OmerSastim() {
           >
             <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(139,92,246,0.15)] bg-zinc-900">
               <img 
-                src="https://lh3.googleusercontent.com/d/1Wd-KeS6AKZAB83gTyt6mo_VbP7nqt9D3" 
+                src="https://lh3.googleusercontent.com/d/1pKMUE2N6VaiceVOl16akzT55OsXgua51" 
                 alt="Omer Sastim (Masteroogway)" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
